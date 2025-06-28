@@ -19,3 +19,16 @@ export const createTodo = mutation({
     })
   },
 })
+
+export const updateTodo = mutation({
+  args: {
+    id: v.id('todos'),
+    data: v.object({
+      title: v.optional(v.string()),
+      isCompleted: v.optional(v.boolean()),
+    }),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.patch(args.id, args.data)
+  },
+})
