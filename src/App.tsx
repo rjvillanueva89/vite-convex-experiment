@@ -1,16 +1,24 @@
-import { TodoForm } from '@/components/todos/form'
-import { TodosList } from '@/components/todos/list'
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { HomePage } from "@/pages/home";
+import { DashboardPage } from "@/pages/dashboard";
+import { TodosPage } from "@/pages/todos";
 
 function App() {
   return (
-    <div className="min-h-dvh w-dvw flex items-center justify-center">
-      <div className="flex flex-col gap-4 w-full max-w-md">
-        <h1>Convex Experiment</h1>
-        <TodoForm />
-        <TodosList />
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <nav className="flex gap-4 p-4">
+        <Link to="/">Home</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/todos">Todos</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/todos" element={<TodosPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
+
